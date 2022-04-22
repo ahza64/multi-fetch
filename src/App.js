@@ -46,7 +46,13 @@ function App() {
             personList.push(person)
           })
         } else {
-
+          persons.value.forEach((personSet, i) => {
+            let personObj = {}
+            personSet.children.forEach((person, i) => {
+              personObj[person.name] = person.value
+            })
+            personList.push(personObj)
+          })
         }
       })
       console.log("personList", personList.sort((a, b) => a.id - b.id));
