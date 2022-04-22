@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import XMLParser from 'react-xml-parser'
 
 import logo from './logo.svg';
 import './App.css';
@@ -19,8 +20,23 @@ function App() {
       })
   }
 
+  function fetchXML(url) {
+    return fetch(url)
+      .then(res => {
+        return res.text()
+      })
+      .then(data => {
+        var xml = new XMLParser().parseFromString(data);
+        console.log("xml", xml.children)
+      })
+      .catch((err) => {
+        console.error('Error: ', err)
+      })
+  }
+
   useEffect(() => {
     fetchData('/datajson.json')
+    fetchXML('/dataxml.xml')
   }, [])
 
   return (
