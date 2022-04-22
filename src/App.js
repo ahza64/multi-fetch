@@ -39,9 +39,17 @@ function App() {
       fetchXML('/dataxml.xml')
     ])
     .then((dataSet) => {
-      dataSet.forEach((people) => {
-        console.log("allSettled forEach", people);
+      let personList = []
+      dataSet.forEach((persons, i) => {
+        if (persons.value.person) {
+          persons.value.person.forEach((person, i) => {
+            personList.push(person)
+          })
+        } else {
+
+        }
       })
+      console.log("personList", personList.sort((a, b) => a.id - b.id));
     })
   }, [])
 
