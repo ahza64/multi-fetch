@@ -12,7 +12,6 @@ function App() {
         return res.json()
       })
       .then(data => {
-        console.log("data", data);
         return data
       })
       .catch((err) => {
@@ -27,7 +26,7 @@ function App() {
       })
       .then(data => {
         var xml = new XMLParser().parseFromString(data);
-        console.log("xml", xml.children)
+        return xml.children
       })
       .catch((err) => {
         console.error('Error: ', err)
@@ -35,8 +34,15 @@ function App() {
   }
 
   useEffect(() => {
-    fetchData('/datajson.json')
-    fetchXML('/dataxml.xml')
+    Promise.allSettled([
+      fetchData('/datajson.json'),
+      fetchXML('/dataxml.xml')
+    ])
+    .then((dataSet) => {
+      dataSet.forEach((people) => {
+        console.log("allSettled forEach", people);
+      })
+    })
   }, [])
 
   return (
