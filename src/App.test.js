@@ -4,12 +4,120 @@
 
 import buildPersonsList from './core/getAllAsyncData'
 import flattenSortList from './core/flattenSortList'
+import buildJSONList from './core/buildJSONList'
+import buildXMLList from './core/buildXMLList'
+
+describe("unit tests", () => {
+
+  const testSort = [
+    {
+      id: 4
+    },
+    {
+      id: 2
+    },
+    {
+      id: 5
+    }
+  ]
+
+  const testJSON = {
+                      value: {
+                        person: [
+                          {
+                            id: "10",
+                            firstName: "joe",
+                            lastName: "test"
+                          },
+                          {
+                            id: "5",
+                            firstName: "bob",
+                            lastName: "test"
+                          },
+                          {
+                            id: "7",
+                            firstName: "tom",
+                            lastName: "test"
+                          }
+                        ]
+                      }
+                    }
+
+  const testXMLconverted = {
+                            value: [
+                              {
+                                children: [
+                                  {
+                                    name: "id",
+                                    value: "3"
+                                  },
+                                  {
+                                    name: "firstName",
+                                    value: "susan"
+                                  },
+                                  {
+                                    name: "lastName",
+                                    value: "test"
+                                  }
+                                ]
+                              },
+                              {
+                                children: [
+                                  {
+                                    name: "id",
+                                    value: "6"
+                                  },
+                                  {
+                                    name: "firstName",
+                                    value: "kathy"
+                                  },
+                                  {
+                                    name: "lastName",
+                                    value: "test"
+                                  }
+                                ]
+                              },
+                              {
+                                children: [
+                                  {
+                                    name: "id",
+                                    value: "1"
+                                  },
+                                  {
+                                    name: "firstName",
+                                    value: "jo"
+                                  },
+                                  {
+                                    name: "lastName",
+                                    value: "test"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+
+  it("flattens and sorts the array", () => {
+    const sortedList = flattenSortList(testSort)
+    expect(sortedList[0].id).toBe(2)
+    expect(sortedList.length).toBe(3)
+  })
+
+  it("builds the persons list from the JSON formatted data", async () => {
+    const personsJSONList = buildJSONList(testJSON)
+    expect(personsJSONList.length).toBe(3)
+  })
+
+  it("builds the persons list form the XML converted data", () => {
+    const personsXMLList = buildXMLList(testXMLconverted)
+    expect(personsXMLList.length).toBe(3)
+  })
+})
 
 // describe("intergrated algorithm test", () => {
 //   it("tests the entire algorithm", async () => {
 //     const personsInputData = [
 //       {
-//         "value": {
+//         value: {
 //           person: [
 //             {
 //               id: "10",
@@ -30,7 +138,7 @@ import flattenSortList from './core/flattenSortList'
 //         }
 //       },
 //       {
-//         "value": [
+//         value: [
 //           {
 //             children: [
 //               {
@@ -87,25 +195,6 @@ import flattenSortList from './core/flattenSortList'
 //     expect(personsList.length).toBe(6)
 //   })
 // })
-
-describe("unit tests", () => {
-  it("flattens and sorts the array", () => {
-    const testData = [
-      {
-        id: 4
-      },
-      {
-        id: 2
-      },
-      {
-        id: 5
-      }
-    ]
-    const sortedList = flattenSortList(testData)
-    expect(sortedList[0].id).toBe(2)
-    expect(sortedList.length).toBe(3)
-  })
-})
 
 {/*
 test("get json data", (done) => {
