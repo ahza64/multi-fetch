@@ -10,192 +10,108 @@ import findChildren from './core/findChildren'
 
 describe("unit tests", () => {
 
-  const testSort = [
+  const personsInputData = [
     {
-      id: 4
+      value: {
+        person: [
+          {
+            id: "10",
+            firstName: "joe",
+            lastName: "test"
+          },
+          {
+            id: "5",
+            firstName: "bob",
+            lastName: "test"
+          },
+          {
+            id: "7",
+            firstName: "tom",
+            lastName: "test"
+          }
+        ]
+      }
     },
     {
-      id: 2
-    },
-    {
-      id: 5
+      value: [
+        {
+          children: [
+            {
+              name: "id",
+              value: "3"
+            },
+            {
+              name: "firstName",
+              value: "susan"
+            },
+            {
+              name: "lastName",
+              value: "test"
+            }
+          ]
+        },
+        {
+          children: [
+            {
+              name: "id",
+              value: "6"
+            },
+            {
+              name: "firstName",
+              value: "kathy"
+            },
+            {
+              name: "lastName",
+              value: "test"
+            }
+          ]
+        },
+        {
+          children: [
+            {
+              name: "id",
+              value: "1"
+            },
+            {
+              name: "firstName",
+              value: "jo"
+            },
+            {
+              name: "lastName",
+              value: "test"
+            }
+          ]
+        }
+      ]
     }
   ]
 
-  const testJSON = {
-                      value: {
-                        person: [
-                          {
-                            id: "10",
-                            firstName: "joe",
-                            lastName: "test"
-                          },
-                          {
-                            id: "5",
-                            firstName: "bob",
-                            lastName: "test"
-                          },
-                          {
-                            id: "7",
-                            firstName: "tom",
-                            lastName: "test"
-                          }
-                        ]
-                      }
-                    }
-
-  const testXMLconverted = {
-                            value: [
-                              {
-                                children: [
-                                  {
-                                    name: "id",
-                                    value: "3"
-                                  },
-                                  {
-                                    name: "firstName",
-                                    value: "susan"
-                                  },
-                                  {
-                                    name: "lastName",
-                                    value: "test"
-                                  }
-                                ]
-                              },
-                              {
-                                children: [
-                                  {
-                                    name: "id",
-                                    value: "6"
-                                  },
-                                  {
-                                    name: "firstName",
-                                    value: "kathy"
-                                  },
-                                  {
-                                    name: "lastName",
-                                    value: "test"
-                                  }
-                                ]
-                              },
-                              {
-                                children: [
-                                  {
-                                    name: "id",
-                                    value: "1"
-                                  },
-                                  {
-                                    name: "firstName",
-                                    value: "jo"
-                                  },
-                                  {
-                                    name: "lastName",
-                                    value: "test"
-                                  }
-                                ]
-                              }
-                            ]
-                          }
-
   it("flattens and sorts the array", () => {
-    const sortedList = flattenSortList(testSort)
-    expect(sortedList[0].id).toBe(2)
+    const sortedList = flattenSortList(personsInputData[0].value.person)
+    expect(sortedList[0].id).toBe("5")
     expect(sortedList.length).toBe(3)
   })
 
   it("builds the persons list from the JSON formatted data", async () => {
-    const personsJSONList = buildJSONList(testJSON)
+    const personsJSONList = buildJSONList(personsInputData[0])
     expect(personsJSONList.length).toBe(3)
   })
 
   it("builds the persons list form the XML converted data", () => {
-    const personsXMLList = buildXMLList(testXMLconverted)
+    const personsXMLList = buildXMLList(personsInputData[1])
     expect(personsXMLList.length).toBe(3)
   })
 
   it("builds person object from a nested list of converted XML objects", () => {
-    const foundChildren = findChildren(testXMLconverted.value[0])
+    const foundChildren = findChildren(personsInputData[1].value[0])
     expect(foundChildren.firstName).toBe("susan")
   })
 })
 
+
 // describe("intergrated algorithm test", () => {
 //   it("tests the entire algorithm", async () => {
-//     const personsInputData = [
-//       {
-//         value: {
-//           person: [
-//             {
-//               id: "10",
-//               firstName: "joe",
-//               lastName: "test"
-//             },
-//             {
-//               id: "5",
-//               firstName: "bob",
-//               lastName: "test"
-//             },
-//             {
-//               id: "7",
-//               firstName: "tom",
-//               lastName: "test"
-//             }
-//           ]
-//         }
-//       },
-//       {
-//         value: [
-//           {
-//             children: [
-//               {
-//                 name: "id",
-//                 value: "3"
-//               },
-//               {
-//                 name: "firstName",
-//                 value: "susan"
-//               },
-//               {
-//                 name: "lastName",
-//                 value: "test"
-//               }
-//             ]
-//           },
-//           {
-//             children: [
-//               {
-//                 name: "id",
-//                 value: "6"
-//               },
-//               {
-//                 name: "firstName",
-//                 value: "kathy"
-//               },
-//               {
-//                 name: "lastName",
-//                 value: "test"
-//               }
-//             ]
-//           },
-//           {
-//             children: [
-//               {
-//                 name: "id",
-//                 value: "1"
-//               },
-//               {
-//                 name: "firstName",
-//                 value: "jo"
-//               },
-//               {
-//                 name: "lastName",
-//                 value: "test"
-//               }
-//             ]
-//           }
-//         ]
-//       }
-//     ]
+
 //     const personsList = await buildPersonsList(personsInputData)
 //     console.log("personsList", personsList);
 //     expect(personsList.length).toBe(6)
