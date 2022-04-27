@@ -1,9 +1,111 @@
-import getAllAsyncData from './core/getAllAsyncData'
+// import getAllAsyncData from './core/getAllAsyncData'
+// import fetchXML from './core/fetchXML'
+// import fetchData from './core/fetchData'
 
-import fetchXML from './core/fetchXML'
-import fetchData from './core/fetchData'
+import buildPersonsList from './core/getAllAsyncData'
+import flattenSortList from './core/flattenSortList'
 
+// describe("intergrated algorithm test", () => {
+//   it("tests the entire algorithm", async () => {
+//     const personsInputData = [
+//       {
+//         "value": {
+//           person: [
+//             {
+//               id: "10",
+//               firstName: "joe",
+//               lastName: "test"
+//             },
+//             {
+//               id: "5",
+//               firstName: "bob",
+//               lastName: "test"
+//             },
+//             {
+//               id: "7",
+//               firstName: "tom",
+//               lastName: "test"
+//             }
+//           ]
+//         }
+//       },
+//       {
+//         "value": [
+//           {
+//             children: [
+//               {
+//                 name: "id",
+//                 value: "3"
+//               },
+//               {
+//                 name: "firstName",
+//                 value: "susan"
+//               },
+//               {
+//                 name: "lastName",
+//                 value: "test"
+//               }
+//             ]
+//           },
+//           {
+//             children: [
+//               {
+//                 name: "id",
+//                 value: "6"
+//               },
+//               {
+//                 name: "firstName",
+//                 value: "kathy"
+//               },
+//               {
+//                 name: "lastName",
+//                 value: "test"
+//               }
+//             ]
+//           },
+//           {
+//             children: [
+//               {
+//                 name: "id",
+//                 value: "1"
+//               },
+//               {
+//                 name: "firstName",
+//                 value: "jo"
+//               },
+//               {
+//                 name: "lastName",
+//                 value: "test"
+//               }
+//             ]
+//           }
+//         ]
+//       }
+//     ]
+//     const personsList = await buildPersonsList(personsInputData)
+//     console.log("personsList", personsList);
+//     expect(personsList.length).toBe(6)
+//   })
+// })
 
+describe("unit tests", () => {
+  it("flattens and sorts the array", () => {
+    const testData = [
+      {
+        id: 4
+      },
+      {
+        id: 2
+      },
+      {
+        id: 5
+      }
+    ]
+    const sortedList = flattenSortList(testData)
+    expect(sortedList[0].id).toBe(2)
+    expect(sortedList.length).toBe(3)
+  })
+})
 
 {/*
 test("get json data", (done) => {
