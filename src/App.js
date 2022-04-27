@@ -8,7 +8,7 @@ function App() {
 
   useEffect(() => {
     const personListData = getAllAsyncData('/datajson.json', '/dataxml.xml')
-    console.log("useEffect personList", personListData);
+    console.log("Cleaned and sorted data", personListData);
   }, [])
 
   return (
