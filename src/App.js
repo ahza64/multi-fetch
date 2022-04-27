@@ -7,7 +7,7 @@ import './App.css';
 function App() {
 
   useEffect(() => {
-    const personListData = getAllAsyncData()
+    const personListData = getAllAsyncData('/datajson.json', '/dataxml.xml')
     console.log("useEffect personList", personListData);
   }, [])
 
