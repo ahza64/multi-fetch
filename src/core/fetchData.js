@@ -7,6 +7,6 @@ export default function fetchData(url) {
     return data
   })
   .catch((err) => {
-    console.error('Error: ', err)
+    return err
   })
 }

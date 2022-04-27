@@ -10,6 +10,6 @@ export default function fetchXML(url) {
     return xml.children
   })
   .catch((err) => {
-    console.error('Error: ', err)
+    return err
   })
 }

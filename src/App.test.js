@@ -6,6 +6,7 @@ import buildPersonsList from './core/getAllAsyncData'
 import flattenSortList from './core/flattenSortList'
 import buildJSONList from './core/buildJSONList'
 import buildXMLList from './core/buildXMLList'
+import findChildren from './core/findChildren'
 
 describe("unit tests", () => {
 
@@ -110,6 +111,11 @@ describe("unit tests", () => {
   it("builds the persons list form the XML converted data", () => {
     const personsXMLList = buildXMLList(testXMLconverted)
     expect(personsXMLList.length).toBe(3)
+  })
+
+  it("builds person object from a nested list of converted XML objects", () => {
+    const foundChildren = findChildren(testXMLconverted.value[0])
+    expect(foundChildren.firstName).toBe("susan")
   })
 })
 
