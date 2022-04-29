@@ -1,6 +1,6 @@
-import fetchXML from './fetchXML'
-import fetchData from './fetchData'
-import buildPersonsList from './buildPersonsList'
+import fetchXML from './fetch/fetchXML'
+import fetchData from './fetch/fetchData'
+import buildPersonsList from './buildLists/index'
 
 export default function getAllAsyncData(urlOne, urlTwo) {
   return Promise.allSettled([

@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import getAllAsyncData from './core/getAllAsyncData'
+import getAllAsyncData from './core/index'
 
 import logo from './logo.svg';
 import './App.css';

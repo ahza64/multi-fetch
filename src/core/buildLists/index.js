@@ -1,4 +1,4 @@
-import flattenSortList from './flattenSortList'
+import flattenSortList from './fragments/flattenSortList'
 import buildJSONList from './buildJSONList'
 import buildXMLList from './buildXMLList'
 

@@ -3,11 +3,11 @@
 // import fetchData from './core/fetchData'
 
 import personsInputData from './testData/appTestData'
-import buildPersonsList from './core/getAllAsyncData'
-import flattenSortList from './core/flattenSortList'
-import buildJSONList from './core/buildJSONList'
-import buildXMLList from './core/buildXMLList'
-import findChildren from './core/findChildren'
+import buildPersonsList from './core/index'
+import flattenSortList from './core/buildLists/fragments/flattenSortList'
+import buildJSONList from './core/buildLists/buildJSONList'
+import buildXMLList from './core/buildLists/buildXMLList'
+import findChildren from './core/buildLists/fragments/findChildren'
 
 describe("unit tests", () => {
 
