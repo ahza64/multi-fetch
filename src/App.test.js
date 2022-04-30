@@ -13,7 +13,7 @@ describe("unit tests", () => {
   describe("sortedList test", () => {
     it("flattens the array", () => {
       const sortedList = flattenSortList(personsInputData[0].value.person)
-      expect(sortedList.length).toBe(3)
+      expect(sortedList).toHaveLength(3)
     })
 
     it("sorts the array", () => {
@@ -30,7 +30,7 @@ describe("unit tests", () => {
 
     it("returns a list of three objects", () => {
       const personsJSONList = buildJSONList(personsInputData[0])
-      expect(personsJSONList.length).toBe(3)
+      expect(personsJSONList).toHaveLength(3)
     })
   })
 
@@ -42,7 +42,7 @@ describe("unit tests", () => {
 
     it("returns a list of three objects", () => {
       const personsXMLList = buildXMLList(personsInputData[1])
-      expect(personsXMLList.length).toBe(3)
+      expect(personsXMLList).toHaveLength(3)
     })
 
     it("check for proper XML converted object structure", () => {
