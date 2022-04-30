@@ -3,33 +3,59 @@
 // import fetchData from './core/fetchData'
 
 import personsInputData from './testData/appTestData'
-import buildPersonsList from './core/index'
+import buildPersonsList from './core'
 import flattenSortList from './core/buildLists/fragments/flattenSortList'
 import buildJSONList from './core/buildLists/buildJSONList'
 import buildXMLList from './core/buildLists/buildXMLList'
 import findChildren from './core/buildLists/fragments/findChildren'
 
 describe("unit tests", () => {
+  describe("sortedList test", () => {
+    it("flattens the array", () => {
+      const sortedList = flattenSortList(personsInputData[0].value.person)
+      expect(sortedList.length).toBe(3)
+    })
 
-  it("flattens and sorts the array", () => {
-    const sortedList = flattenSortList(personsInputData[0].value.person)
-    expect(sortedList[0].id).toBe("5")
-    expect(sortedList.length).toBe(3)
+    it("sorts the array", () => {
+      const sortedList = flattenSortList(personsInputData[0].value.person)
+      expect(sortedList[0].id).toBe("5")
+    })
   })
 
-  it("builds the persons list from the JSON formatted data", async () => {
-    const personsJSONList = buildJSONList(personsInputData[0])
-    expect(personsJSONList.length).toBe(3)
+  describe("personsJSONList test", () => {
+    it("returns a javascript object array", () => {
+      const personsJSONList = buildJSONList(personsInputData[0])
+      expect(typeof personsJSONList).toBe(typeof [])
+    })
+
+    it("returns a list of three objects", () => {
+      const personsJSONList = buildJSONList(personsInputData[0])
+      expect(personsJSONList.length).toBe(3)
+    })
   })
 
-  it("builds the persons list form the XML converted data", () => {
-    const personsXMLList = buildXMLList(personsInputData[1])
-    expect(personsXMLList.length).toBe(3)
+  describe("personsXMLList test", () => {
+    it("returns a javascript object array", () => {
+      const personsXMLList = buildXMLList(personsInputData[1])
+      expect(typeof personsXMLList).toBe(typeof [])
+    })
+
+    it("returns a list of three objects", () => {
+      const personsXMLList = buildXMLList(personsInputData[1])
+      expect(personsXMLList.length).toBe(3)
+    })
+
+    it("check for proper XML converted object structure", () => {
+      const personsXMLList = buildXMLList(personsInputData[1])
+      expect(personsXMLList[0].lastName).toBe("test")
+    })
   })
 
-  it("builds person object from a nested list of converted XML objects", () => {
-    const foundChildren = findChildren(personsInputData[1].value[0])
-    expect(foundChildren.firstName).toBe("susan")
+  describe("foundChildren test", () => {
+    it("builds person object from a nested list of converted XML objects", () => {
+      const foundChildren = findChildren(personsInputData[1].value[0])
+      expect(foundChildren.firstName).toBe("susan")
+    })
   })
 })
 
